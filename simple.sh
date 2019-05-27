@@ -1,7 +1,7 @@
 #! /bin/bash
-./testing/install-infra.sh
+bash ./testing/install-infra.sh
 
-git clone https://github.com/Moshezauros/forgeops.git
+git clone -b release/6.5.1 https://github.com/Moshezauros/forgeops.git
 
 # edit variables
 # project and service account
