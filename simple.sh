@@ -16,6 +16,7 @@ sed -i "s/{SERVICE_ACCOUNT_TO_REPLACE}/$SA/g" ./forgeops/etc/gke-env.cfg
 # ?ingress ip
 
 # run bg-bke-up.sh
+chmod -R 777 ./forgeops
 cd ./forgeops/bin
 bash ./bg-gke-up.sh
 bash ./bg-deploy-prometheus.sh
