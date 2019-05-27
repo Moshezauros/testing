@@ -6,7 +6,7 @@ run kubectl --help to validate its installed
 
 wget  -P ./ "https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz"
 tar -zxvf helm-v2.12.3-linux-amd64.tar.gz
-mv ./helm /bin/helm
+mv ./linux-amd64/helm /bin/helm
 
 sudo git clone https://github.com/ahmetb/kubectx /opt/kubectx
 sudo ln -s /opt/kubectx/kubectx /usr/local/bin/kubectx
