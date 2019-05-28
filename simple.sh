@@ -3,15 +3,18 @@ bash ./testing/install-infra.sh
 
 git clone -b release/6.5.1 https://github.com/Moshezauros/forgeops.git
 
-# edit variables
+# edit variables in gke-env.cfg
 # project and service account
 PROJECT="$(gcloud config get-value project)"
 SA="$(gcloud config get-value account)"
-# J=$(printf "sed -i 's/{PROJECT_ID_TO_REPLACE}/%s/g' ./forgeops/etc/gke-env.cfg" $PROJECT)
-# echo "${J}"
 
 sed -i "s/{PROJECT_ID_TO_REPLACE}/$PROJECT/g" ./forgeops/etc/gke-env.cfg
 sed -i "s/{SERVICE_ACCOUNT_TO_REPLACE}/$SA/g" ./forgeops/etc/gke-env.cfg
+
+# set project context
+gcloud config set project "$PROJECT"
+# TO-DO: remove
+echo gcloud config list
 
 # ?ingress ip
 
