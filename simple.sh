@@ -11,10 +11,9 @@ SA="$(gcloud config get-value account)"
 sed -i "s/{PROJECT_ID_TO_REPLACE}/$PROJECT/g" ./forgeops/etc/gke-env.cfg
 sed -i "s/{SERVICE_ACCOUNT_TO_REPLACE}/$SA/g" ./forgeops/etc/gke-env.cfg
 
-# set project context
-gcloud config set project "$PROJECT"
 # TO-DO: remove
-echo gcloud config list
+echo $(gcloud config list)
+echo $(kubectl version)
 
 # ?ingress ip
 
