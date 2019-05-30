@@ -1,6 +1,7 @@
 #! /bin/bash
 bash ./testing/install-infra.sh
 
+#git clone -b release/6.5.1 https://github.com/ForgeRock/forgeops.git 
 git clone -b release/6.5.1 https://github.com/Moshezauros/forgeops.git
 
 # edit variables in gke-env.cfg
