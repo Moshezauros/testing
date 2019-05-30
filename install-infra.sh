@@ -7,6 +7,9 @@ mv ./kubectl /usr/local/bin/kubectl
 # create kubeconfig dir and file
 mkdir $HOME/.kube
 echo "" > $HOME/.kube/config
+export KUBECONFIG=$HOME/.kube/config
+echo "$HOME"
+echo "$KUBECONFIG"
 
 # helm version 2.12.3
 wget  -P ./ "https://storage.googleapis.com/kubernetes-helm/helm-v2.12.3-linux-amd64.tar.gz"
