@@ -5,10 +5,10 @@ chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
 
 # create kubeconfig dir and file
-mkdir $HOME/.kube
-chmod -R 777 $HOME/.kube
-echo "" > $HOME/.kube/config
-export KUBECONFIG=$HOME/.kube/config
+mkdir .kube
+chmod -R 777 ./.kube
+echo "" > ./.kube/config
+export KUBECONFIG=./.kube/config
 echo $($HOME)
 echo $($KUBECONFIG)
 
