@@ -47,6 +47,10 @@ bash ./bg-gke-up.sh
 kubectl create namespace not-default
 kubectl config set-context --current --namespace=not-default
 cd /forgeops/helm
+echo "HELM VERSION: ----------------------"
+echo $(helm version)
+echo "kubectl config view: ----------------------"
+echo $(kubectl config view)
 helm init --client-only --upgrade
 helm dependency update cmp-platform
 helm install cmp-platform
