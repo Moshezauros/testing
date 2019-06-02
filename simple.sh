@@ -52,7 +52,10 @@ echo $(helm version)
 echo "kubectl config view: ----------------------"
 echo $(kubectl config view)
 helm init --client-only --upgrade
+echo "MARKER 1"
 helm dependency update cmp-platform
+echo "MARKER 2"
 helm install cmp-platform
+echo "MARKER 3"
 
 # delete this machine
