@@ -55,6 +55,8 @@ echo "IS TILLER INSTALLED: ---------------"
 echo "$(kubectl get pods --all-namespaces | grep tiller)"
 echo "MARKER 0"
 helm init --client-only --upgrade
+echo "HELM VERSION: ----------------------"
+echo $(helm version)
 echo "MARKER 1"
 helm dependency update cmp-platform
 echo "MARKER 2"
