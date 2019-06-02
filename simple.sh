@@ -22,10 +22,15 @@ touch /.kube/config
 chmod -R 777 /.kube
 export KUBECONFIG=/.kube/config
 
-# ?ingress ip
+# ingress ip - create static ip and save to env variables
+gcloud compute addresses create ip-1 --global
+ip=$(gcloud compute addresses list | grep 'ip-1' | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
+sed -i "s/{IP_TO_REPLACE}/$ip/g" ./forgeops/etc/gke-env.cfg
 
 # run bg-bke-up.sh
 chmod -R 777 ./forgeops
 cd ./forgeops/bin
 bash ./bg-gke-up.sh
-bash ./bg-deploy-prometheus.sh
+
+# uncomment to enable monitoring
+# bash ./bg-deploy-prometheus.sh
