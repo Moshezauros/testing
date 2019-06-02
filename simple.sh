@@ -39,8 +39,8 @@ bash ./bg-gke-up.sh
 # this is the student part
 helm init --client-only --upgrade
 kubectl create namespace not-default
-kubens not-default
-cd ./../helm
+kubectl config set-context --current --namespace=not-default
+cd /forgeops/helm
 helm dependency update cmp-platform
 helm install cmp-platform
 
