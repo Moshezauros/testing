@@ -1,8 +1,15 @@
 #! /bin/bash
 bash ./testing/install-infra.sh
 
-#git clone -b release/6.5.1 https://github.com/ForgeRock/forgeops.git 
-git clone -b release/6.5.1 https://github.com/Moshezauros/forgeops.git
+git clone -b release/6.5.1 https://github.com/ForgeRock/forgeops.git 
+# git clone -b release/6.5.1 https://github.com/Moshezauros/forgeops.git
+
+# copy relevant files from here to forgeops folder
+cp -p ./testing/bg-files/bg-deploy-prometheus.sh ./testing/bg-files/bg-gke-create-cluster.sh ./testing/bg-files/bg-gke-up.sh /forgeops/bin/
+# cp ./testing/bg-files/bg-gke-create-cluster.sh /forgeops/bin/bg-gke-create-cluster.sh
+# cp ./testing/bg-files/bg-gke-up.sh /forgeops/bin/bg-gke-up.sh
+cp -p ./testing/bg-files/gke-env.cfg /forgeops/etc/
+cp -p ./testing/bg-files/bg-kube-prometheus.yaml /forgeops/etc/prometheus-values/
 
 # edit variables in gke-env.cfg
 # project and service account
