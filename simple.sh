@@ -44,10 +44,10 @@ bash ./bg-gke-up.sh
 # bash ./bg-deploy-prometheus.sh
 
 # this is the student part
-helm init --client-only --upgrade
 kubectl create namespace not-default
 kubectl config set-context --current --namespace=not-default
 cd /forgeops/helm
+helm init --client-only --upgrade
 helm dependency update cmp-platform
 helm install cmp-platform
 
