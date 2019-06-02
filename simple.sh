@@ -24,7 +24,8 @@ export KUBECONFIG=/.kube/config
 
 # ingress ip - create static ip and save to env variables
 gcloud compute addresses create ip-1 --global
-ip=$(gcloud compute addresses list | grep 'ip-1' | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
+ip=$(gcloud compute addresses list | grep 'ip-1' -m1 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
+echo $ip
 sed -i "s/{IP_TO_REPLACE}/$ip/g" ./forgeops/etc/gke-env.cfg
 
 # run bg-bke-up.sh
