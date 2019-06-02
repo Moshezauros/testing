@@ -35,3 +35,13 @@ bash ./bg-gke-up.sh
 
 # uncomment to enable monitoring
 # bash ./bg-deploy-prometheus.sh
+
+# this is the student part
+helm init --client-only --upgrade
+kubectl create namespace not-default
+kubens not-default
+cd ./../helm
+helm dependency update cmp-platform
+helm install cmp-platform
+
+# delete this machine
