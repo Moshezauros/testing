@@ -13,7 +13,8 @@ sed -i "s/{PROJECT_ID_TO_REPLACE}/$PROJECT/g" ./forgeops/etc/gke-env.cfg
 sed -i "s/{SERVICE_ACCOUNT_TO_REPLACE}/$SA/g" ./forgeops/etc/gke-env.cfg
 
 # TO-DO: remove
-gcloud config set container/use_client_certificate True
+# see: https://github.com/kubernetes/kubernetes/issues/30617
+gcloud config set container/use_client_certificate False
 
 # ?ingress ip
 
