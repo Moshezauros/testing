@@ -20,6 +20,7 @@ gcloud config set container/use_client_certificate False
 mkdir /.kube
 touch /.kube/config
 chmod -R 777 /.kube
+export KUBECONFIG=/.kube/config
 
 # ?ingress ip
 
