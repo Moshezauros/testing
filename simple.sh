@@ -16,6 +16,11 @@ sed -i "s/{SERVICE_ACCOUNT_TO_REPLACE}/$SA/g" ./forgeops/etc/gke-env.cfg
 # see: https://github.com/kubernetes/kubernetes/issues/30617
 gcloud config set container/use_client_certificate False
 
+# create .kube/config
+mkdir /.kube
+touch /.kube/config
+chmod -R 777 /.kube
+
 # ?ingress ip
 
 # run bg-bke-up.sh
