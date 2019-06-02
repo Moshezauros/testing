@@ -38,7 +38,7 @@ sed -i "s/{IP_TO_REPLACE}/$ip/g" ./forgeops/etc/gke-env.cfg
 # run bg-bke-up.sh
 chmod -R 777 ./forgeops
 cd ./forgeops/bin
-bash ./bg-gke-up.sh
+yes y | bash ./bg-gke-up.sh
 
 # uncomment to enable monitoring
 # bash ./bg-deploy-prometheus.sh
