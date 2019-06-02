@@ -51,6 +51,9 @@ echo "HELM VERSION: ----------------------"
 echo $(helm version)
 echo "kubectl config view: ----------------------"
 echo $(kubectl config view)
+echo "IS TILLER INSTALLED: ---------------"
+echo "$(kubectl get pods --all-namespaces | grep tiller)"
+echo "MARKER 0"
 helm init --client-only --upgrade
 echo "MARKER 1"
 helm dependency update cmp-platform
@@ -59,3 +62,4 @@ helm install cmp-platform
 echo "MARKER 3"
 
 # delete this machine
+# gcloud compute instances delete $0
