@@ -65,11 +65,11 @@ gcloud beta container clusters create "$GKE_CLUSTER_NAME" \
     --project "${GKE_PROJECT_ID}" \
     --zone "${GKE_PRIMARY_ZONE}" \
     --no-enable-basic-auth \
-    --cluster-version "1.12.7-gke.10" \
+    --cluster-version "${GKE_CLUSTER_VERSION}" \
     --machine-type "${GKE_MACHINE_TYPE}" \
     --image-type "COS" \
     --disk-type "pd-standard" \
-    --disk-size "100" \
+    --disk-size "40" \
     --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --num-nodes "${GKE_CLUSTER_SIZE}" \
     --enable-cloud-logging \
     --enable-cloud-monitoring \
