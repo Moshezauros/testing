@@ -74,8 +74,8 @@ gcloud beta container clusters create "$GKE_CLUSTER_NAME" \
     --enable-cloud-logging \
     --enable-cloud-monitoring \
     --no-enable-ip-alias \
-    --network "projects/${GKE_PROJECT_ID}/global/networks/default" \
-    --subnetwork "projects/${GKE_PROJECT_ID}/regions/us-central1/subnetworks/default" \
+    --network="${GKE_NETWORK_NAME}" \
+    --subnetwork="${GKE_NETWORK_NAME}" \
     --addons HorizontalPodAutoscaling,HttpLoadBalancing \
     --enable-autoupgrade \
     --enable-autorepair ${GKE_EXTRA_ARGS}
