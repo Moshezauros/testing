@@ -76,11 +76,12 @@ gcloud container clusters create $GKE_CLUSTER_NAME \
       --min-nodes=${MIN_NODES} \
       --max-nodes=${MAX_NODES} \
       --labels="createdby=${CREATOR}" \
-      --addons=HorizontalPodAutoscaling \
+      --addons=HorizontalPodAutoscaling,HttpLoadBalancing \
       --enable-autoscaling \
       --enable-autorepair \
       --disk-type=pd-standard ${GKE_EXTRA_ARGS} \
-      --service-account="${GKE_SERVICE_ACCOUNT}" 
+      --service-account="${GKE_SERVICE_ACCOUNT}" \
+      --scopes=service-management
 
 
 #  --enable-stackdriver-kubernetes
