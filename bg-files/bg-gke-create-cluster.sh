@@ -82,6 +82,7 @@ gcloud beta container clusters create $GKE_CLUSTER_NAME \
       --subnetwork="${GKE_NETWORK_NAME}" \
 	--addons HorizontalPodAutoscaling,HttpLoadBalancing  \
 	--enable-autoupgrade  \
+      --service-account="${GKE_SERVICE_ACCOUNT}" \
 	--enable-autorepair ${GKE_EXTRA_ARGS}
 
 
