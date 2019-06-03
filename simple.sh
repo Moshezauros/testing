@@ -47,28 +47,12 @@ bash ./bg-gke-up.sh
 kubectl create namespace not-default
 kubectl config set-context --current --namespace=not-default
 cd /forgeops/helm
-echo "HELM VERSION: ----------------------"
-echo $(helm version)
-echo "kubectl config view: ----------------------"
-echo $(kubectl config view)
-echo "IS TILLER INSTALLED: ---------------"
-echo "$(kubectl get pods --all-namespaces | grep tiller)"
-echo "MARKER 0"
-helm init --client-only --upgrade
-echo "HELM VERSION: ----------------------"
-echo $(helm version)
-echo "MARKER 1"
 
 # trying to set HELM_HOME to an absolute path (see https://github.com/helm/helm/issues/4659)
 echo "TESTING HERE ------"
+export HELM_HOME=/.helm/
+helm init --client-only --upgrade
 echo $HELM_HOME
-rm -rf $HELM_HOME
-mkdir $HELM_HOME
-export HELM_HOME=$(cd $HELM_HOME && pwd)
-echo $HELM_HOME
-echo $pwd
-cd /forgeops/helm
-echo $pwd
 echo "TESTING HERE ------"
 
 helm dependency update cmp-platform
