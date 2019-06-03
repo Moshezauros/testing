@@ -61,27 +61,28 @@ fi
 # scopes are required for gcs storage backup and cloud sql
 # If no service account is specified then the default one is used
 # It is recommended to create a service account
-gcloud container clusters create $GKE_CLUSTER_NAME \
-      --project="${GKE_PROJECT_ID}" \
-      --zone="${GKE_PRIMARY_ZONE}" \
-      --cluster-version="${GKE_CLUSTER_VERSION}" \
-      --machine-type="${GKE_MACHINE_TYPE}" \
+gcloud beta container clusters create $GKE_CLUSTER_NAME \
+	--project="${GKE_PROJECT_ID}"  \
+	--zone="${GKE_PRIMARY_ZONE}"  \
+	--no-enable-basic-auth  \
+	--cluster-version="${GKE_CLUSTER_VERSION}" \
+	--machine-type="${GKE_MACHINE_TYPE}" \
       --min-cpu-platform="Intel Skylake" \
-      --image-type=COS \
-      --disk-size=40 \
-      --network="${GKE_NETWORK_NAME}" \
-      --subnetwork="${GKE_NETWORK_NAME}" \
-      --enable-ip-alias \
-      --num-nodes=${GKE_CLUSTER_SIZE} \
+	--image-type=COS \
+	--disk-type="pd-standard"  \
+	--disk-size=40  \
+	--scopes="https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append"  \
+	--num-nodes=${GKE_CLUSTER_SIZE} \
       --min-nodes=${MIN_NODES} \
       --max-nodes=${MAX_NODES} \
-      --labels="createdby=${CREATOR}" \
-      --addons=HorizontalPodAutoscaling,HttpLoadBalancing \
-      --enable-autoscaling \
-      --enable-autorepair \
-      --disk-type=pd-standard ${GKE_EXTRA_ARGS} \
-      --service-account="${GKE_SERVICE_ACCOUNT}" \
-      --scopes=service-management
+	--enable-cloud-logging  \
+	--enable-cloud-monitoring  \
+	--no-enable-ip-alias  \
+	--network="${GKE_NETWORK_NAME}" \
+      --subnetwork="${GKE_NETWORK_NAME}" \
+	--addons HorizontalPodAutoscaling,HttpLoadBalancing  \
+	--enable-autoupgrade  \
+	--enable-autorepair ${GKE_EXTRA_ARGS}
 
 
 #  --enable-stackdriver-kubernetes

@@ -82,8 +82,6 @@ done
 # Create the ingress controller
 # BG make sure you have reserved a static IP and edited the gke-env.cfg file.
 # TO-DO: remove
-echo "TESTING THE INGRESS COMMAND HERE: ------------------"
-echo "./gke-create-ingress-cntlr.sh ${GKE_INGRESS_IP}"
 ./gke-create-ingress-cntlr.sh ${GKE_INGRESS_IP}
 
 # Deploy cert-manager
