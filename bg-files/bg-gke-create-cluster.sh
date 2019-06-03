@@ -66,7 +66,7 @@ gcloud beta container clusters create "$GKE_CLUSTER_NAME" \
     --zone "${GKE_PRIMARY_ZONE}" \
     --no-enable-basic-auth \
     --cluster-version "1.12.7-gke.10" \
-    --machine-type "n1-standard-1" \
+    --machine-type "${GKE_MACHINE_TYPE}" \
     --image-type "COS" \
     --disk-type "pd-standard" \
     --disk-size "100" \
@@ -78,6 +78,7 @@ gcloud beta container clusters create "$GKE_CLUSTER_NAME" \
     --subnetwork="${GKE_NETWORK_NAME}" \
     --addons HorizontalPodAutoscaling,HttpLoadBalancing \
     --enable-autoupgrade \
+    --service-account="${GKE_SERVICE_ACCOUNT}" \
     --enable-autorepair ${GKE_EXTRA_ARGS}
 
 #  --enable-stackdriver-kubernetes
