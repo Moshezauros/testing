@@ -62,4 +62,6 @@ gcloud compute instances get-serial-port-output $0 --zone=$zone > ./serialPortLo
 curl -F 'data=@./serialPortLog.txt' 'https://use.cloudshare.com/api/v3/unauthenticated/TestPageLogging'
 
 # delete this machine
+echo "delete command:"
+echo "gcloud compute instances delete $0 --zone=$zone --quiet"
 gcloud compute instances delete $0 --zone=$zone --quiet
