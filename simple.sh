@@ -29,8 +29,7 @@ export KUBECONFIG=/.kube/config
 
 # consider moving this to terraform script
 # ingress ip - create static ip and save to env variables
-# gcloud compute addresses create ip-1 --global
-gcloud compute addresses create ip-1 --region us-central1
+# gcloud compute addresses create ip-1 --region us-central1
 ip=$(gcloud compute addresses list | grep 'ip-1' -m1 | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
 echo $ip
 sed -i "s/{IP_TO_REPLACE}/$ip/g" ./forgeops/etc/gke-env.cfg
@@ -48,17 +47,13 @@ kubectl create namespace not-default
 kubectl config set-context --current --namespace=not-default
 cd /forgeops/helm
 
-# trying to set HELM_HOME to an absolute path (see https://github.com/helm/helm/issues/4659)
-echo "TESTING HERE ------"
+# setting HELM_HOME to an absolute path (see https://github.com/helm/helm/issues/4659)
 export HELM_HOME=/.helm/
 helm init --client-only --upgrade
-echo $HELM_HOME
-echo "TESTING HERE ------"
 
+# installing helm chart
 helm dependency update cmp-platform
-echo "MARKER 2"
 helm install cmp-platform
-echo "MARKER 3"
 
 # delete this machine
-# gcloud compute instances delete $0
+gcloud compute instances delete $0

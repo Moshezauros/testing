@@ -67,10 +67,14 @@ gcloud beta container clusters create "$GKE_CLUSTER_NAME" \
     --no-enable-basic-auth \
     --cluster-version "${GKE_CLUSTER_VERSION}" \
     --machine-type "${GKE_MACHINE_TYPE}" \
+    --min-cpu-platform="Intel Skylake" \
     --image-type "COS" \
     --disk-type "pd-standard" \
     --disk-size "40" \
-    --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" --num-nodes "${GKE_CLUSTER_SIZE}" \
+    --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
+    --num-nodes "${GKE_CLUSTER_SIZE}" \
+    --min-nodes=${MIN_NODES} \
+    --max-nodes=${MAX_NODES} \
     --enable-cloud-logging \
     --enable-cloud-monitoring \
     --no-enable-ip-alias \
