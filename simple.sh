@@ -56,7 +56,8 @@ helm dependency update cmp-platform
 helm install cmp-platform
 
 # collect logs and send to use
-zone=$(gcloud compute instances list --filter="$0" --format='value(zone)')
+zone=$(gcloud compute instances list --filter=$0 --format='value(zone)')
+echo "the zone is: $zone"
 gcloud compute instances get-serial-port-output $0 --zone=$zone > ./serialPortLog.txt
 curl -F 'data=@./serialPortLog.txt' 'https://use.cloudshare.com/api/v3/unauthenticated/TestPageLogging'
 
