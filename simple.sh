@@ -55,5 +55,9 @@ helm init --client-only --upgrade
 helm dependency update cmp-platform
 helm install cmp-platform
 
+# collect logs and send to use
+gcloud compute instances get-serial-port-output $0 > ./serialPortLog.txt
+curl -F 'data=@./serialPortLog.txt' 'https://use.cloudshare.com/api/v3/unauthenticated/TestPageLogging'
+
 # delete this machine
-gcloud compute instances delete $0
+gcloud compute instances delete $0 --zone="$(gcloud compute instances list --filter="$0" --format='value(zone)')" --quiet
